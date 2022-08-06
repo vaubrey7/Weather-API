@@ -43,10 +43,7 @@ form.addEventListener("submit", e => {
       return;
     }
   }
-
-
-  const url =`https://api.openweathermap.org/data/3.0/onecall?${inputVal}}&appid=${apiKey}&units=imperial`;
-  
+  const url = `https://api.openweathermap.org/data/2.5/forecast?${inputVal}&appid=${apiKey}&units=imperial`;
   fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -56,7 +53,7 @@ form.addEventListener("submit", e => {
         sys,
         weather
       } = data;
-     
+
 
       const li = document.createElement("li");
       li.classList.add("city");
