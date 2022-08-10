@@ -44,16 +44,16 @@ form.addEventListener("submit", e => {
     }
   }
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${inputVal}&appid=${apiKey}&units=imperial`;
-  fetch(url.data.list.weather).then(response => response.json())
-  //console.log("fetch")
+  fetch(url.data.list.weather).then(response => response.JSON())
+  console.log("fetch")
     .then(data => {
-      //console.log("api")
+      console.log("api")
       const {
         main,
         name,
         sys,
         list,
-        weather,
+       weather,
       } = data;
       console.log[fetch]
       console.log(response)
