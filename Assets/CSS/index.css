@@ -1,3 +1,4 @@
+/* setting up body and background images with font styles including size, color, style etc*/
 body {
     display: flex;
     justify-content: center;
@@ -8,6 +9,9 @@ body {
     background: #222;
     background-image: url('https://source.unsplash.com/1600x900/?landscape');
     font-size: 120%;
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
   }
   
   .card {
@@ -19,13 +23,13 @@ body {
     max-width: 420px;
     margin: 1em;
   }
-  
+  /* placeholder search settings*/
   .search {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+  /*most importanly my button settings, kept it simple */
   button {
     margin: 0.5em;
     border-radius: 50%;
