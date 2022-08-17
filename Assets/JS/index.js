@@ -4,11 +4,11 @@ let weathersharknado = {
   apiKey: "2e8b44f9196feb70c52b445f0e1cca3a",
   fetchWeather: function (city) {
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
+        "https://api.openweathermap.org/data/2.5/forecast?q=" +
         city +
         "&units=imperial&appid=" +
         this.apiKey
-    )//if it cant find the weather sets alert/throw err 
+      ) //if it cant find the weather sets alert/throw err 
       .then((response) => {
         if (!response.ok) {
           alert("No weather found.");
@@ -16,30 +16,31 @@ let weathersharknado = {
         }
         return response.json();
       })
-      .then((data) => this.displayWeather(data));
-      //added for loop to get my 5 days of forcast 
-     const iterable = {
-        [Symbol.iterator]() {
-          return {
-            i : 0,
-            next() {
-              if (this.i + 8) {
-                return { value: this.i, done: true };
-              }
-              return { value: undefined, done: false };
-            }
-          };
+      .then((data) => {
+        console.log(data)
+        //added for loop to get my 5 days of forcast
+        for (var i = 0; i < 5; i++) {
+          this.displayWeather(data.list[i])
         }
-      };
-
-  },
+      });
+},
 
   //Function to set name of city, icon, weather description, temp and wind and append innertext of html elements
   displayWeather: function (data) {
-    const { name } = data;
-    const { icon, description } = data.weather[0];
-    const { temp, humidity } = data.main;
-    const { speed } = data.wind;
+    const {
+      name
+    } = data;
+    const {
+      icon,
+      description
+    } = data.weather[0];
+    const {
+      temp,
+      humidity
+    } = data.main;
+    const {
+      speed
+    } = data.wind;
 
     document.querySelector(".weather-cityboy").innerText = "Weather in " + name;
     document.querySelector(".weather-icon").src =
@@ -77,7 +78,7 @@ document
 //Sets default weather location
 weathersharknado.fetchWeather("Salt Lake City");
 //=============================================================================================================     
-  
+
 //INTERATION 2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
 //weather.fetchWeather("").city.name
 // if (filteredArray.length > 0) {
