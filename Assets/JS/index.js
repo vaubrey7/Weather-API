@@ -31,10 +31,6 @@ let weathersharknado = {
           };
         }
       };
-      
-      for (const value of iterable) {
-        console.log(value);
-      }
 
   },
 
