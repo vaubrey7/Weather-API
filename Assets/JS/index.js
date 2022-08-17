@@ -1,6 +1,6 @@
 //INTERATION 3 FINAL PRODUCT ===================================================================================================
 //setting my westher and API function and fetch. I concatinate the API using deconstruction to make it easier to read and manage. 
-let weather = {
+let weathersharknado = {
   apiKey: "2e8b44f9196feb70c52b445f0e1cca3a",
   fetchWeather: function (city) {
     fetch(
@@ -18,9 +18,24 @@ let weather = {
       })
       .then((data) => this.displayWeather(data));
       //added for loop to get my 5 days of forcast 
-      for (var i = 0; i < list.length; i + 8) {
-        console.log(i)
+     const iterable = {
+        [Symbol.iterator]() {
+          return {
+            i : 0,
+            next() {
+              if (this.i + 8) {
+                return { value: this.i, done: true };
+              }
+              return { value: undefined, done: false };
+            }
+          };
+        }
+      };
+      
+      for (const value of iterable) {
+        console.log(value);
       }
+
   },
 
   //Function to set name of city, icon, weather description, temp and wind and append innertext of html elements
@@ -30,7 +45,7 @@ let weather = {
     const { temp, humidity } = data.main;
     const { speed } = data.wind;
 
-    document.querySelector(".weather-city").innerText = "Weather in " + name;
+    document.querySelector(".weather-cityboy").innerText = "Weather in " + name;
     document.querySelector(".weather-icon").src =
       "https://openweathermap.org/img/wn/" + icon + ".png";
     document.querySelector(".weather-description").innerText = description;
@@ -50,7 +65,7 @@ let weather = {
 
 //Event listener for when search button is clicked
 document.querySelector(".weather-search button").addEventListener("click", function () {
-  weather.search();
+  weathersharknado.search();
 });
 
 // If enter key is used to search for contents of search bar - it executes the search
@@ -58,13 +73,13 @@ document
   .querySelector(".weather-search__bar")
   .addEventListener("keyup", function (event) {
     if (event.key == "Enter") {
-      weather.search();
+      weathersharknado.search();
     }
   });
 
 
 //Sets default weather location
-weather.fetchWeather("Salt Lake City");
+weathersharknado.fetchWeather("Salt Lake City");
 //=============================================================================================================     
   
 //INTERATION 2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=

@@ -1,17 +1,21 @@
 /* setting up body and background images with font styles including size, color, style etc*/
+.weather-cityboy{
+  font-family:'Oswald', sans-serif;
+}
+
 body {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content:row;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    height: 90vh;
+    margin: 10px;
+    font-family: 'Oswald', sans-serif;
     background: #222;
     background-image: url('https://source.unsplash.com/1600x900/?landscape');
-    font-size: 120%;
+    font-size: 50%;
     color: white;
     font-size: larger;
-    font-weight: bolder;
   }
   
   .card {
@@ -78,6 +82,7 @@ body {
     visibility: hidden;
     max-height: 20px;
     position: relative;
+    font-size:medium;
   }
   
   .weather.loading:after {
