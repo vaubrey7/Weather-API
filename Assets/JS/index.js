@@ -37,7 +37,7 @@ let weathersharknado = {
         this.displayWeather(data)
 
       });
-  },
+  }, // adding elements and appending directly to the HTML for rest of the forecast. 
   displayFiveDay: function (data, city) {
     const fiveDayForecast = documnet.querySelector("#fiveDayForecast")
     for (var i = 0; i < data.length; i += 8) {
@@ -63,6 +63,7 @@ let weathersharknado = {
        weatherHumidEl.classList.add("weather-humidity")
       const weatherWind = document.createElement("div")
        weatherWind.classList.add("weather-wind")
+       this.displayFiveDay.$(content).appendTo(HTML);
     }
   },
 
@@ -119,7 +120,7 @@ document
 
 //Sets default weather location
 weathersharknado.fetchWeather("Salt Lake City");
-displayFiveDay.fiveDayForecast()
+
 //=============================================================================================================     
 
 //INTERATION 2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
