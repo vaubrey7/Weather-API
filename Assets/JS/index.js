@@ -1,10 +1,26 @@
 //INTERATION 3 FINAL PRODUCT ===================================================================================================
-//setting my westher and API function and fetch. I concatinate the API using deconstruction to make it easier to read and manage. 
+//setting my weather and API function and fetch. I concatinate the API using deconstruction to make it easier to read and manage. 
 let weathersharknado = {
   apiKey: "2e8b44f9196feb70c52b445f0e1cca3a",
   fetchWeather: function (city) {
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" +
+        city +
+        "&units=imperial&appid=" +
+        this.apiKey)
+      .then((response) => {
+        if (!response.ok) {
+          alert("No weather found.");
+          throw new Error("No weather found.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data)
+        this.displayFiveDay(data, city)
+        
+      });
     fetch(
-        "https://api.openweathermap.org/data/2.5/forecast?q=" +
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
         city +
         "&units=imperial&appid=" +
         this.apiKey
@@ -18,15 +34,41 @@ let weathersharknado = {
       })
       .then((data) => {
         console.log(data)
-        //added for loop to get my 5 days of forcast
-        for (var i = 0; i < 5; i++) {
-          this.displayWeather(data.list[i])
-        }
+        this.displayWeather(data)
+
       });
-},
+  },
+  displayFiveDay: function (data, city) {
+    const fiveDayForecast = documnet.querySelector("#fiveDayForecast")
+    for (var i = 0; i < data.length; i += 8) {
+      const h1El = document.createElement("h1")
+       h1El.classList.add("weather-cityboy")
+        h1El.textContent = city
+      const h2El = document.createElement("h2")
+       h2El.classList.add("weather-temp")
+        h2El.document.querySelector(".weather-temp").innerText = Math.floor(temp) + "°F";
+         document.querySelector(".weather-humidity").innerText =
+           "Humidity: " + humidity + "%";
+      const divEl = document.createElement("div")
+       divEl.classList.add("flex")
+      const imgEl = document.createElement(`img src="https://openweathermap.org/img/wn/04n.png" alt=""`)
+        imgEl.classList.add("westher-icon")
+         imgEl.append("appending to divEl")
+          divEl.append(imgEl)
+      const weatherDescEL = document.createElement("div")
+       weatherDescEL.classList.add("weather-description")
+         weatherDescEL.append("appending to the div")
+          divEl.append(weatherDescEL)
+      const weatherHumidEl = document.createElement("div")
+       weatherHumidEl.classList.add("weather-humidity")
+      const weatherWind = document.createElement("div")
+       weatherWind.classList.add("weather-wind")
+    }
+  },
 
   //Function to set name of city, icon, weather description, temp and wind and append innertext of html elements
   displayWeather: function (data) {
+    console.log(data)
     const {
       name
     } = data;
@@ -77,6 +119,7 @@ document
 
 //Sets default weather location
 weathersharknado.fetchWeather("Salt Lake City");
+displayFiveDay.fiveDayForecast()
 //=============================================================================================================     
 
 //INTERATION 2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
