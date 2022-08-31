@@ -38,18 +38,19 @@ let weathersharknado = {
 
       });
   }, // adding elements and appending directly to the HTML for rest of the forecast. 
-  displayFiveDay: function (data, city) {
+  displayFiveDay: function (data, city) { 
     console.log(city,data )
     const fiveDayForecast = document.querySelector("#fiveDayForecast")
-    for (var i = 0; i < data.list.length; i += 8) {
+    fiveDayForecast.innerHTML = ""
+    for (var i = 0; i < 33; i += 8) { console.log(i)
       const h1El = document.createElement("h1")
        h1El.classList.add("weather-cityboy")
         h1El.textContent = city
       const h2El = document.createElement("h2")
        h2El.classList.add("weather-temp")
-       h2El.textContent = Math.floor(data.list[i].main.temp) + "°F";
-       fiveDayForecast.append(h1El, h2El)
-        const divEl = document.createElement("div")
+        h2El.textContent = Math.floor(data.list[i].main.temp) + "°F";
+         fiveDayForecast.append(h1El, h2El)
+      const divEl = document.createElement("div")
        divEl.classList.add("flex")
       const imgEl = document.createElement(`img`)
       imgEl.src = "https://openweathermap.org/img/wn/04n.png" 
@@ -57,12 +58,12 @@ let weathersharknado = {
           divEl.append(imgEl)
       const weatherDescEL = document.createElement("div")
        weatherDescEL.classList.add("weather-description")
-       weatherDescEL.textContent = (data.list[i].weather[i].description) 
+        weatherDescEL.textContent = (data.list[i].weather[0].description) 
           divEl.append(weatherDescEL)
       const weatherWind = document.createElement("div")
        weatherWind.classList.add("weather-wind")
-       weatherWind.textContent = (data.list[i].wind.speed) + " mp/h";
-       divEl.append(weatherWind)
+        weatherWind.textContent = (data.list[i].wind.speed) + " mp/h";
+         divEl.append(weatherWind)
        fiveDayForecast.append(divEl);
     }
   },
